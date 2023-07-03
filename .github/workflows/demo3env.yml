@@ -1,5 +1,5 @@
 name: hello-françois
-on : workflow_dispatch
+on : [workflow_dispatch]
 
 env:
   NAME: Francois
