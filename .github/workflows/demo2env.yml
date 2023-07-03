@@ -11,8 +11,7 @@ jobs:
       ENTREPRISE: Digi-s
     steps:
       - name: Dit Bonjour
-        run: echo "Bonjour $NAME  ! tu travailles chez  $ENTREPRISE ? 
-        alors bon $DAY à toi !"
+        run: echo "Bonjour $NAME  ! tu travailles chez  $ENTREPRISE ? alors bon $DAY à toi !"
       env:
         DAY: Lundi
       - name: Lundi ?
