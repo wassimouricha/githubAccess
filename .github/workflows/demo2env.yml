@@ -7,7 +7,7 @@ env:
 jobs:
   say_hello:
     runs-on: ubuntu-latest
-    env:
+      env:
       ENTREPRISE: Digi-s
       steps:
       - name: Dit Bonjour
