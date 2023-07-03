@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ENTREPRISE: Digi-s
-    steps:
+      steps:
       - name: Dit Bonjour
         run: echo "Bonjour $NAME  ! tu travailles chez  $ENTREPRISE ? alors bon $DAY à toi !"
       env:
