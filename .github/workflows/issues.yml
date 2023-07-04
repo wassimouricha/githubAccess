@@ -1,0 +1,11 @@
+name: Issue Workflow
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  issue_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send message
+        run: echo "Issue créée"

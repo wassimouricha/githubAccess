@@ -1,0 +1,12 @@
+name: Next Workflow
+on:
+  workflow_run:
+    workflows: ["PR Workflow"]
+    types: [completed]
+
+jobs:
+  next_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send message
+        run: echo "Previous workflow completed"
