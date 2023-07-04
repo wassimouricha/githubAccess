@@ -1,0 +1,20 @@
+name: Fruit-Nom Pipeline
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-phrases:
+    strategy:
+      matrix:
+        fruits: [pomme, banane, orange, fraise]
+        noms: [Michel, Sophie, Jean]
+      fail-fast: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Phrases
+        run: |
+          for fruit in ${{ matrix.fruits }}; do
+            for nom in ${{ matrix.noms }}; do
+              echo "${nom} mange une ${fruit}, et il adore ça !"
+            done
+          done
