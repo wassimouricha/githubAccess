@@ -2,12 +2,25 @@ name: Tests
 
 on:
   pull_request:
-    branches:
-      - develop
+  types: [opened, reopened]
+    branches: [develop]
 
 jobs:
   test:
+    if: startsWith(github.head_ref, 'features/')
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+      steps:
+       - uses: actions/checkout@v3
+       - name: use Node.js ${{ matrix.node-version }}
+         uses: actions/setup-node@v3
+         with:
+           node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm run test
 
     steps:
       - name: Checkout repository
