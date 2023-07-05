@@ -24,6 +24,29 @@ jobs:
       - name: Run tests on Node.js 14.x
         run: npm run test
 
+      - name: Generate coverage report
+        run: npm run test:coverage
+        env:
+          CI: true
+        # Store the coverage report in a file
+        # and save it as an artifact
+        # Redirect the output to coverage.txt
+        # using the 'coverage' script command
+        # provided by the test:coverage command
+        # Modify the path if needed
+        # Upload the artifact at the end
+        # with the name 'coverage-report'
+        # Modify the path if needed
+        if: success()
+        run: |
+          npm run test:coverage > coverage.txt
+          echo "Coverage report generated"
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.txt
+
       - name: Set up Node.js 16.x
         uses: actions/setup-node@v2
         with:
@@ -34,3 +57,17 @@ jobs:
 
       - name: Run tests on Node.js 16.x
         run: npm run test
+
+      - name: Generate coverage report
+        run: npm run test:coverage
+        env:
+          CI: true
+        if: success()
+        run: |
+          npm run test:coverage > coverage.txt
+          echo "Coverage report generated"
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.txt
