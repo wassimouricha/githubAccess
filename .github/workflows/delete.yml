@@ -19,5 +19,5 @@ jobs:
           startsWith(github.event.pull_request.head.ref, 'features/pipeline')
         run: |
           branch_name=$(echo "${{ github.event.pull_request.head.ref }}" | sed 's/features\/pipeline\///')
-          echo "Deleting branch $branch_name"
+          echo "La branche $branch_name à été supprimée"
           git push origin --delete "$branch_name"
