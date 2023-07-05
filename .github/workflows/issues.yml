@@ -1,11 +1,16 @@
 name: Issue Workflow
 on:
   issues:
-    types: [opened]
+    types: [assigned]
 
 jobs:
-  issue_job:
+  create_issue_branch_job:
+  if: startsWith(github.event.issue.title, 'features/')
     runs-on: ubuntu-latest
     steps:
       - name: Send message
+        uses: robvanderleek/create-issue-branch@main
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: echo "Issue créée"
