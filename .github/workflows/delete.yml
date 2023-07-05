@@ -11,13 +11,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Delete branch
         if: |
           github.event.pull_request.merged == true &&
-          startsWith(github.event.pull_request.head.ref, 'features/')
+          startsWith(github.event.pull_request.head.ref, 'features/pipeline')
         run: |
-          branch_name=$(echo "${{ github.event.pull_request.head.ref }}" | sed 's/features\///')
-          echo "La branche $branch_name à été supprimée"
+          branch_name=$(echo "${{ github.event.pull_request.head.ref }}" | sed 's/features\/pipeline\///')
+          echo "Deleting branch $branch_name"
           git push origin --delete "$branch_name"
