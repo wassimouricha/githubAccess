@@ -16,8 +16,8 @@ jobs:
       - name: Delete branch
         if: |
           github.event.pull_request.merged == true &&
-          startsWith(github.event.pull_request.head.ref, 'features/pipeline')
+          startsWith(github.event.pull_request.head.ref, 'features/')
         run: |
-          branch_name=$(echo "${{ github.event.pull_request.head.ref }}" | sed 's/features\/pipeline\///')
+          branch_name=$(echo "${{ github.event.pull_request.head.ref }}" | sed 's/features\///')
           echo "La branche $branch_name à été supprimée encore une fois"
           git push origin --delete "$branch_name"
