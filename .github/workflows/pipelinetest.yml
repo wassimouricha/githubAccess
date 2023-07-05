@@ -28,15 +28,6 @@ jobs:
         run: npm run test:coverage
         env:
           CI: true
-        # Store the coverage report in a file
-        # and save it as an artifact
-        # Redirect the output to coverage.txt
-        # using the 'coverage' script command
-        # provided by the test:coverage command
-        # Modify the path if needed
-        # Upload the artifact at the end
-        # with the name 'coverage-report'
-        # Modify the path if needed
         if: success()
         run: |
           npm run test:coverage > coverage.txt
