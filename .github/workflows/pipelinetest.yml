@@ -31,7 +31,7 @@ jobs:
         if: success()
         run: |
           npm run test:coverage > coverage.txt
-          echo "Coverage report generated"
+          echo "ça marche !"
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v3
         with:
@@ -56,7 +56,7 @@ jobs:
         if: success()
         run: |
           npm run test:coverage > coverage.txt
-          echo "Coverage report generated"
+          echo "Coverage generé"
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v3
         with:
