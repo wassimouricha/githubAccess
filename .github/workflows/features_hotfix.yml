@@ -16,7 +16,7 @@ jobs:
 
       - name: Vérification commit conventionnel sur les branches hotfix et features
         if: >
-          (!startsWith(github.event.head_commit.message, 'fix:') &&
-          !startsWith(github.event.head_commit.message, 'feat:'))
+          (!startsWith(github.event.head_commit.message, 'hotfix:') &&
+          !startsWith(github.event.head_commit.message, 'features:'))
         run: echo "Le message du commit n'est pas conventionnel" && exit 1
 
