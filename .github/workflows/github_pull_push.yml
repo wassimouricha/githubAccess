@@ -2,26 +2,24 @@ name: Pull or Push
 on: [push, pull_request]
 
 env:
-  MESSAGE: "bonjour ceci est un message"
+  PUSH: c'est un push
+  PULL_REQUEST: c'est une pull request
 
 jobs:
   push_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: push code
         uses: actions/checkout@v3
-      - name: Set environment variable
-        run: echo " C'est un push !"
-      - name: Display message
-        run: echo $MESSAGE
+      - name: Push
+        run: echo "$PUSH"
+
 
   pull_request_job:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: ${{github.event_name == 'pull_request'}}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set environment variable
-        run: echo "$MESSAGE C'est une pull request !"
-      - name: Display message
-        run: echo $MESSAGE
+      - uses: actions/checkout@v3
+      - name: pull request
+        run: echo "$PULL_REQUEST"
+
