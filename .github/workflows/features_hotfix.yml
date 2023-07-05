@@ -1,0 +1,20 @@
+name: Conventional Commits Validation
+
+on:
+  push:
+    branches:
+      - 'features/test'
+      - 'hotfix/test'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Validate Commits
+        uses: npmjs/conventional-commits-validator@v5
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
