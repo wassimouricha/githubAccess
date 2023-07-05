@@ -1,4 +1,4 @@
-name: Conventional Commits Validation
+name: Validate Commits
 
 on:
   push:
@@ -12,9 +12,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Validate Commits
-        uses: danielpa9708/validate-conventional-commits-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: npx commitlint --from=develop
