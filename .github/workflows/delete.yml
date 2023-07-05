@@ -1,0 +1,23 @@
+name: Delete Merged Branch
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Delete branch
+        if: |
+          github.event.pull_request.merged == true &&
+          startsWith(github.event.pull_request.head.ref, 'features/pipeline')
+        run: |
+          branch_name=$(echo "${{ github.event.pull_request.head.ref }}" | sed 's/features\/pipeline\///')
+          echo "Deleting branch $branch_name"
+          git push origin --delete "$branch_name"
